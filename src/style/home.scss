@@ -29,6 +29,12 @@
       border-radius: 5px;
       font-size: 15px;
       font-family: "EB Garamond", serif;
+      transition: all 0.4s ease-in-out;
+      &:hover {
+        color: #5f4ecb;
+        background-color: white;
+        border: #5f4ecb 2px solid;
+      }
     }
     .btn-1 {
       background-color: #5f4ecb;
@@ -38,6 +44,11 @@
     .btn-2 {
       color: #5f4ecb;
       border: #5f4ecb 2px solid;
+      &:hover {
+        background-color: #5f4ecb;
+        color: white;
+        border: none;
+      }
     }
   }
   .intro-image {
@@ -87,6 +98,12 @@
       border-radius: 5px;
       font-size: 15px;
       font-family: "EB Garamond", serif;
+      transition: all 0.4s ease;
+      &:hover {
+        background-color: #5f4ecb;
+        color: white;
+        border: none;
+      }
     }
     .btn-1 {
       background-color: #5f4ecb;
@@ -131,10 +148,13 @@
     }
   }
 }
-.books {
+.mangas {
   width: 85%;
   height: 100vh;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   h2 {
     margin-bottom: 25px;
     padding: 0;
@@ -142,6 +162,130 @@
     text-align: center;
   }
   span {
+    width: 60%;
     font-size: 18px;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .intro-manga {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .manga {
+      width: 23%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .manga-cover {
+        width: 100%;
+        height: 83.5%;
+        background-size: cover;
+      }
+      .manga-category {
+        font-size: 15px;
+      }
+      .manga-name {
+        font-size: 17px;
+        font-weight: bold;
+      }
+      .manga-price {
+        font-size: 16px;
+      }
+    }
+  }
+}
+.shop-all {
+  width: 85%;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  button {
+    width: 170px;
+    height: 60px;
+    color: #5f4ecb;
+    border-radius: 8px;
+    font-size: 16px;
+    border: #5f4ecb 1px solid;
+    cursor: pointer;
+    font-family: "EB Garamond", serif;
+    transition: all 0.4s ease-in-out;
+    &:hover {
+      background-color: #5f4ecb;
+      color: white;
+      border: none;
+    }
+  }
+}
+.video-background {
+  background: #000;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.email {
+  width: 85%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  .email-box {
+    width: 600px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+      margin-bottom: 20px;
+      padding: 0;
+      font-weight: bold;
+      color: #313235;
+      font-size: 65px;
+    }
+    span {
+      font-size: 18px;
+      margin-bottom: 50px;
+    }
+    .box {
+      input {
+        width: 300px;
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 8px;
+        border: 0.5px solid;
+
+        font-family: "EB Garamond", serif;
+        text-indent: 10px;
+      }
+      button {
+        width: 150px;
+        height: 45px;
+        color: #5f4ecb;
+        border-radius: 8px;
+        border: #5f4ecb 1px solid;
+        cursor: pointer;
+        font-family: "EB Garamond", serif;
+        transition: all 0.4s ease-in-out;
+        &:hover {
+          background-color: #5f4ecb;
+          color: white;
+          border: none;
+        }
+      }
+    }
   }
 }

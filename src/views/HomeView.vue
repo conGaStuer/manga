@@ -56,7 +56,7 @@
       <div
         class="award-logo"
         :style="{
-          backgroundImage: `url('https://websitedemos.net/book-store-02/wp-content/uploads/sites/834/2021/04/author-book-store-awards-logo-1.svg')`,
+          backgroundImage: `url('https://websitedemos.net/manga-store-02/wp-content/uploads/sites/834/2021/04/author-manga-store-awards-logo-1.svg')`,
         }"
       ></div>
       <h4>Shogakukan Manga Award 2000</h4>
@@ -69,7 +69,7 @@
       <div
         class="award-logo"
         :style="{
-          backgroundImage: `url('https://websitedemos.net/book-store-02/wp-content/uploads/sites/834/2021/04/author-book-store-awards-logo-.svg')`,
+          backgroundImage: `url('https://websitedemos.net/manga-store-02/wp-content/uploads/sites/834/2021/04/author-manga-store-awards-logo-.svg')`,
         }"
       ></div>
       <h4>Shogakukan Manga Award 2002</h4>
@@ -82,7 +82,7 @@
       <div
         class="award-logo"
         :style="{
-          backgroundImage: `url('https://websitedemos.net/book-store-02/wp-content/uploads/sites/834/2021/04/author-book-store-awards-logo-3.svg')`,
+          backgroundImage: `url('https://websitedemos.net/manga-store-02/wp-content/uploads/sites/834/2021/04/author-manga-store-awards-logo-3.svg')`,
         }"
       ></div>
       <h4>Tezuka Osamu Cultural Prize 1999</h4>
@@ -96,7 +96,7 @@
       <div
         class="award-logo"
         :style="{
-          backgroundImage: `url('https://websitedemos.net/book-store-02/wp-content/uploads/sites/834/2021/04/author-book-store-awards-logo-4.svg')`,
+          backgroundImage: `url('https://websitedemos.net/manga-store-02/wp-content/uploads/sites/834/2021/04/author-manga-store-awards-logo-4.svg')`,
         }"
       ></div>
       <h4>Tezuka Osamu Cultural Prize 2005</h4>
@@ -107,29 +107,54 @@
       </span>
     </div>
   </div>
-  <div class="books">
+  <div class="mangas">
     <h2>Best Selling Mangas</h2>
     <span
-      >Many of his books have spawned popular animated and live-action TV
+      >Many of his mangas have spawned popular animated and live-action TV
       programs and films, and 2008 saw the theatrical release of the first of
       three live-action Japanese films based on 20th Century Boys.</span
     >
-    <div class="book" v-for="manga in mangas" :key="manga.id">
-      <div
-        class="book-cover"
-        :style="{ backgroundImage: `url(${manga.hinhanh})` }"
-      ></div>
-      <div class="book-category">
-        {{ manga.category }}
-      </div>
-      <div class="book-name">
-        {{ manga.name }}
-      </div>
-      <div class="book-price">
-        {{ manga.price }}
+    <div class="intro-manga">
+      <div class="manga" v-for="manga in mangas" :key="manga.id">
+        <div
+          class="manga-cover"
+          :style="{ backgroundImage: `url(${manga.hinhanh})` }"
+        ></div>
+        <div class="manga-category">
+          {{ manga.category }}
+        </div>
+        <div class="manga-name">
+          {{ manga.name }}
+        </div>
+        <div class="manga-price">$ {{ manga.price }}</div>
       </div>
     </div>
   </div>
+  <div class="shop-all">
+    <button>Shop All Manga</button>
+  </div>
+  <div class="video-background">
+    <div class="video-foreground">
+      <iframe
+        src="https://www.youtube.com/embed/HCwDMA_ZJX0?autoplay=1"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+  <div class="email">
+    <div class="email-box">
+      <h3>Be the first to know</h3>
+      <span>Please contact if you have questions about manga</span>
+      <div class="box">
+        <input type="text" placeholder="Your email here" />
+        <button>Subcribe</button>
+      </div>
+    </div>
+  </div>
+  <Footer></Footer>
 </template>
 
 <script>
@@ -137,10 +162,10 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import NavBar from "./NavBar.vue";
-
+import Footer from "./Footer.vue";
 export default {
   name: "HomeView",
-  components: { NavBar },
+  components: { NavBar, Footer },
   setup() {
     const mangas = ref();
     onMounted(() => {
