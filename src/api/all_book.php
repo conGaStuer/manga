@@ -1,16 +1,16 @@
 <?php
 
-require ('./config.php');
+require ("./config.php");
+
 header("Content-Type: application/json");
 
-$sql = "SELECT * from mangas order by rand() limit 4";
-
+$sql = "SELECT *  FROM mangas ";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $mangas = array();
     while ($row = $result->fetch_assoc()) {
-        $mangas[] = $row; // Thêm phần tử vào mảng $mangas
+        $mangas[] = $row;
     }
     echo json_encode($mangas); // Sử dụng $mangas thay vì $manga
 } else {
@@ -18,4 +18,3 @@ if ($result->num_rows > 0) {
 }
 
 $conn->close();
-?>

@@ -144,16 +144,7 @@
       ></iframe>
     </div>
   </div>
-  <div class="email">
-    <div class="email-box">
-      <h3>Be the first to know</h3>
-      <span>Please contact if you have questions about manga</span>
-      <div class="box">
-        <input type="text" placeholder="Your email here" />
-        <button>Subcribe</button>
-      </div>
-    </div>
-  </div>
+  <Box></Box>
   <Footer></Footer>
 </template>
 
@@ -163,9 +154,10 @@ import axios from "axios";
 import { ref, onMounted } from "vue";
 import NavBar from "./NavBar.vue";
 import Footer from "./Footer.vue";
+import Box from "./Box.vue";
 export default {
   name: "HomeView",
-  components: { NavBar, Footer },
+  components: { NavBar, Footer, Box },
   setup() {
     const mangas = ref();
     onMounted(() => {
@@ -189,6 +181,6 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 @import url("../style/home.scss");
 </style>
