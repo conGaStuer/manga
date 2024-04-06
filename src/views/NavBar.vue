@@ -22,9 +22,9 @@
         </li>
       </ul>
 
-      <router-link to="/cart">
-        <i class="fa-solid fa-basket-shopping"></i
-      ></router-link>
+      <div>
+        <i class="fa-solid fa-basket-shopping"></i>
+      </div>
     </div>
   </nav>
 </template>
