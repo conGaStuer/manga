@@ -20,7 +20,8 @@
         <span class="manga-short-des">
           {{ manga.short_des }}
         </span>
-        <button>Add to cart</button>
+        <button @click="addToCart">Add to cart</button>
+        <span v-if="showAdd" class="show">Added to cart successful!!</span>
         <div class="line"></div>
         <div class="tags">
           Category : <span>{{ manga.category }} </span> Tags:<span>
@@ -75,6 +76,24 @@ export default {
     const manga = ref({});
     const route = useRoute();
     const relate_mangas = ref({});
+    const showAdd = ref(false);
+    const addToCart = () => {
+      showAdd.value = true;
+      const cartItem = {
+        manga_id: route.params.id,
+        name: manga.value.name,
+        price: manga.value.price,
+        hinhanh: manga.value.hinhanh,
+      };
+      axios
+        .post("http://localhost/manga/manga/src/api/addtocart.php", cartItem)
+        .then((res) => {
+          console.log("Manga added to cart: ", res.data);
+        })
+        .catch((err) => {
+          console.log("Error ", err);
+        });
+    };
     const getMangaDetail = () => {
       const mangaId = route.params.id;
       axios
@@ -107,6 +126,8 @@ export default {
     return {
       manga,
       relate_mangas,
+      addToCart,
+      showAdd,
     };
   },
 };
