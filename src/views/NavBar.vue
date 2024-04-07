@@ -23,39 +23,97 @@
       </ul>
 
       <div>
-        <i class="fa-solid fa-basket-shopping"></i>
+        <i class="fa-solid fa-basket-shopping" @click="showSideCart"></i>
       </div>
     </div>
   </nav>
-
-  <div class="cart-side">
-    <div>
-      <span>Shopping Cart</span>
-      <i class="fa-solid fa-x"></i>
-    </div>
-    <div class="product-list">
-      <div class="product">
-        <div class="product-image">1</div>
-        <div class="product-info">
-          <div class="product-name">1</div>
-          <div class="product-price">1</div>
+  <div class="overlay" v-if="showCart">
+    <Transition appear name="slide">
+      <div class="cart-side">
+        <div class="shopping">
+          <span>Shopping Cart</span>
+          <i class="fa-solid fa-x" @click="closeCart"></i>
         </div>
-        <i class="fa-regular fa-circle-xmark"></i>
+        <div class="product-list">
+          <div class="product" v-for="cartItem in cart" :key="cartItem.id">
+            <div
+              class="product-image"
+              :style="{ backgroundImage: `url(${cartItem.hinhanh})` }"
+            ></div>
+            <div class="product-info">
+              <div class="product-name">{{ cartItem.name }}</div>
+              <div class="product-price">$ {{ cartItem.price }}.00</div>
+            </div>
+            <i class="fa-regular fa-circle-xmark"></i>
+          </div>
+        </div>
+        <div class="product-prices">
+          <span>Subtotal</span>
+          <h5>$ {{ totalPrice.toFixed(2) }}</h5>
+        </div>
+        <div class="btn">
+          <button>View Cart</button>
+          <button>Check out</button>
+        </div>
       </div>
-    </div>
-    <div class="product-price">
-      <span>Subtotal</span>
-      <span>Price</span>
-    </div>
-    <button>View Cart</button>
-    <button>Check out</button>
+    </Transition>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+import { ref, onMounted, computed } from "vue";
+export default {
+  setup() {
+    const cart = ref([]);
+    const showCart = ref(false);
+    const closeCart = () => {
+      showCart.value = false;
+    };
+    const showSideCart = () => {
+      showCart.value = true;
+    };
+    const totalPrice = computed(() => {
+      return cart.value.reduce(
+        (total, item) => total + parseFloat(item.price),
+        0
+      );
+    });
+    onMounted(() => {
+      axios
+        .get("http://localhost/manga/manga/src/api/cart.php")
+        .then((res) => {
+          cart.value = res.data;
+        })
+        .catch((err) => {
+          console.log("Error", err);
+        });
+    });
+    return {
+      cart,
+      showCart,
+      showSideCart,
+      closeCart,
+      totalPrice,
+    };
+  },
+};
 </script>
 
 <style>
 @import url("../style/navbar.scss");
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.5s;
+}
+.slide-enter-from {
+  transform: translateX(100%);
+}
+.slide-enter-to {
+  transform: translateX(0);
+}
+
+.slide-leave-to {
+  transform: translateX(100%);
+}
 </style>
