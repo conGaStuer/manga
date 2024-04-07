@@ -10,22 +10,24 @@ if (isset($_SESSION['username'])) {
     // Check if a login request is being made (POST method)
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $data = json_decode(file_get_contents("php://input"));
+        if (isset($data->username) && isset($data->password)) {
+            $username = $data->username;
+            $password = $data->password;
 
-        $username = $data->username;
-        $password = $data->password;
+            $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
 
-        $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
-
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $_SESSION['username'] = $username;
-            $response['message'] = 'Login successful';
-        } else {
-            $response['error'] = 'Invalid username or password';
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $_SESSION['username'] = $username;
+                $response['message'] = 'Login successful';
+            } else {
+                $response['error'] = 'Invalid username or password';
+            }
         }
 
+
         // Close the connection (assuming it's in a separate function)
-        $conn->close();
+
     } else {
         $response['error'] = 'User not logged in';
     }
@@ -33,4 +35,6 @@ if (isset($_SESSION['username'])) {
 
 header('Content-Type: application/json');
 echo json_encode($response);
+
+$conn->close();
 ?>

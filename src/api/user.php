@@ -1,7 +1,7 @@
 <?php
 session_start();
 require ('./config.php');
-
+require ('./login.php');
 
 if (isset($_SESSION['username'])) {
 

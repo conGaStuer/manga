@@ -89,6 +89,7 @@ export default {
         .post("http://localhost/manga/manga/src/api/addtocart.php", cartItem)
         .then((res) => {
           console.log("Manga added to cart: ", res.data);
+          window.location.reload();
         })
         .catch((err) => {
           console.log("Error ", err);

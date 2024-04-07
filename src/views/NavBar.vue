@@ -42,9 +42,14 @@
             ></div>
             <div class="product-info">
               <div class="product-name">{{ cartItem.name }}</div>
-              <div class="product-price">$ {{ cartItem.price }}.00</div>
+              <div class="product-price">
+                {{ cartItem.quantity }} x $ {{ cartItem.price }}.00
+              </div>
             </div>
-            <i class="fa-regular fa-circle-xmark"></i>
+            <i
+              class="fa-regular fa-circle-xmark"
+              @click="deleteCart(cartItem)"
+            ></i>
           </div>
         </div>
         <div class="product-prices">
@@ -79,6 +84,11 @@ export default {
         0
       );
     });
+    const deleteCart = (cartItem) => {
+      axios.post("http://localhost/manga/manga/src/api/cart.php", {
+        mangaId: cartItem.manga_id,
+      });
+    };
     onMounted(() => {
       axios
         .get("http://localhost/manga/manga/src/api/cart.php")
@@ -95,6 +105,7 @@ export default {
       showSideCart,
       closeCart,
       totalPrice,
+      deleteCart,
     };
   },
 };
