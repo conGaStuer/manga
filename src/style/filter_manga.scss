@@ -1,0 +1,114 @@
+.query-mangas {
+  width: 85%;
+  height: auto;
+  margin: 100px auto;
+  display: flex;
+  justify-content: space-between;
+  .query-side {
+    width: 25%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    .search {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      input {
+        width: 250px;
+        height: 40px;
+        border: 0.2px solid;
+        border-radius: 4px;
+        margin-right: 5px;
+        text-indent: 10px;
+        font-family: "EB Garamond", serif;
+      }
+      button {
+        width: 45px;
+        height: 45px;
+        border-radius: 4px;
+        border: 1px solid #5f4ecb;
+        color: #5f4ecb;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
+        &:hover {
+          background-color: #5f4ecb;
+          color: white;
+        }
+      }
+    }
+    .price {
+      width: 100%;
+      margin-top: 100px;
+      h3 {
+        font-size: 30px;
+        color: rgb(44, 42, 42);
+      }
+      input {
+        width: 100%;
+      }
+      p {
+        font-weight: bold;
+        color: rgb(44, 42, 42);
+      }
+    }
+  }
+  .manga-side {
+    width: 65%;
+    height: 90%;
+    .link {
+      a {
+        text-decoration: none;
+        color: #5f4ecb;
+        font-weight: bold;
+      }
+    }
+    h1 {
+      font-size: 60px;
+      color: rgb(44, 42, 42);
+    }
+    .show {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+    }
+    .mangas-grid {
+      width: 100%;
+      height: auto;
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 20px;
+      a {
+        text-decoration: none;
+      }
+      .manga-info {
+        width: 230px;
+        height: 420px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .manga-image {
+          width: 100%;
+          height: 80%;
+          background-size: cover;
+        }
+        .manga-tag {
+          color: gainsboro;
+        }
+        .manga-name {
+          color: rgb(19, 18, 18);
+          font-size: 15px;
+          font-weight: bold;
+        }
+        .manga-price {
+          color: rgb(44, 42, 42);
+        }
+      }
+    }
+  }
+}

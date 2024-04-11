@@ -24,7 +24,9 @@
         <span v-if="showAdd" class="show">Added to cart successful!!</span>
         <div class="line"></div>
         <div class="tags">
-          Category : <span>{{ manga.category }} </span> Tags:<span>
+          Category : <span>{{ manga.category }} </span> Tags:<span
+            @click="filterTag"
+          >
             {{ manga.tags }}
           </span>
         </div>
@@ -66,6 +68,7 @@ import { useRoute, useRouter } from "vue-router";
 import NavBar from "./NavBar.vue";
 import Box from "./Box.vue";
 import Footer from "./Footer.vue";
+
 export default {
   components: {
     NavBar,
@@ -118,6 +121,26 @@ export default {
           console.log("error", err);
         });
     };
+    const router = useRouter();
+    const filterTag = () => {
+      axios
+        .post("http://localhost/manga/manga/src/api/manga_tag.php", {
+          mangaTag: manga.value.tags,
+        })
+        .then((res) => {
+          if (res.data) {
+            router.push({
+              name: "FilteredManga",
+              query: { tag: manga.value.tags },
+            });
+          } else {
+            console.log("error");
+          }
+        })
+        .catch((err) => {
+          console.log("Error", err);
+        });
+    };
 
     onMounted(() => {
       getMangaDetail();
@@ -129,6 +152,7 @@ export default {
       relate_mangas,
       addToCart,
       showAdd,
+      filterTag,
     };
   },
 };

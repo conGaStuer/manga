@@ -18,19 +18,20 @@ export default {
     const errorMessage = ref("");
     const login = () => {
       axios
-        .post("http://localhost/manga_online/manga_online/src/api/login.php", {
+        .post("http://localhost/manga/manga/src/api/login.php", {
           username: username.value,
           password: password.value,
         })
         .then((response) => {
           if (response.data.message === "Login successful") {
-            window.location.href = "/";
+            console.log("Login successful");
+            // Điều hướng đến trang chính hoặc thực hiện hành động tiếp theo tại đây
           } else {
             errorMessage.value = "Invalid username or password";
           }
         })
         .catch((error) => {
-          console.log("That was an error", error);
+          console.log("An error occurred", error);
         });
     };
     return { username, password, login, errorMessage };

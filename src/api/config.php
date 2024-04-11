@@ -2,7 +2,7 @@
 
 
 header("Access-Control-Allow-Origin: *"); // Cho phép truy cập từ bất kỳ domain nào
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS"); // Cho phép các phương thức POST, GET và OPTIONS
+header("Access-Control-Allow-Methods: POST, GET"); // Cho phép các phương thức POST, GET và OPTIONS
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"); // Các header được phép
 
 

@@ -53,6 +53,16 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/MangaDetail.vue"),
   },
+  {
+    path: "/filteredManga",
+    name: "FilteredManga",
+    props: (route) => ({ tag: route.query.tag }),
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/FilteredManga.vue"),
+  },
 ];
 
 const router = createRouter({

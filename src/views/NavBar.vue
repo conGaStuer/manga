@@ -85,9 +85,20 @@ export default {
       );
     });
     const deleteCart = (cartItem) => {
-      axios.post("http://localhost/manga/manga/src/api/cart.php", {
-        mangaId: cartItem.manga_id,
-      });
+      axios
+        .post("http://localhost/manga/manga/src/api/deleteCart.php", {
+          mangaId: cartItem.manga_id,
+        })
+        .then((res) => {
+          if (res.data.message === "Delete successful") {
+            window.location.reload();
+          } else {
+            console.log("Error");
+          }
+        })
+        .catch((err) => {
+          console.log("Error", err);
+        });
     };
     onMounted(() => {
       axios
