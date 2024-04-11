@@ -57,7 +57,7 @@
           <h5>$ {{ totalPrice.toFixed(2) }}</h5>
         </div>
         <div class="btn">
-          <button>View Cart</button>
+          <button><router-link to="/cart">View Cart</router-link></button>
           <button>Check out</button>
         </div>
       </div>
@@ -122,7 +122,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url("../style/navbar.scss");
 .slide-enter-active,
 .slide-leave-active {

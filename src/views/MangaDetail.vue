@@ -145,6 +145,7 @@ export default {
     onMounted(() => {
       getMangaDetail();
       getRelatedManga();
+      window.scrollTo(0, 0);
     });
 
     return {

@@ -1,0 +1,143 @@
+.cart-sides {
+  width: 85%;
+  height: auto;
+  margin: 100px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .cart {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    span {
+      font-weight: bold;
+      font-size: 40px;
+      position: relative;
+      left: -460px;
+      top: -20px;
+    }
+    table {
+      width: 90%;
+      height: auto;
+      border-collapse: collapse;
+      border: 1px solid #ddd;
+      font-size: 18px;
+      .quantity {
+        width: 40px;
+        height: 30px;
+        border: 1px solid #ddd;
+        text-indent: 5px;
+      }
+      .coupon td {
+        padding: 20px;
+        input {
+          height: 30px;
+          margin-right: 10px;
+          text-indent: 10px;
+          font-family: "EB Garamond", serif;
+        }
+        button {
+          height: 36px;
+          margin-right: 10px;
+          font-family: "EB Garamond", serif;
+          width: 150px;
+          border: 1px solid #5f4ecb;
+          color: rgb(115, 31, 193);
+          cursor: pointer;
+          border-radius: 5px;
+          &:hover {
+            background-color: #5f4ecb;
+            color: white;
+          }
+        }
+        .update {
+          float: right;
+        }
+      }
+      .image {
+        width: 100px;
+        height: 120px;
+        background-size: cover;
+      }
+      .tr th {
+        padding: 20px;
+        font-weight: normal;
+      }
+      th {
+        padding: 20px;
+      }
+      .th {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        i {
+          cursor: pointer;
+        }
+      }
+      tr td {
+        border: none;
+        border-bottom: 1px solid #ddd;
+      }
+      tr th {
+        border: none;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+}
+
+.total {
+  width: 400px;
+  height: 250px;
+
+  float: right;
+  position: relative;
+  right: 230px;
+  top: -40px;
+  table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    tr {
+      border-bottom: 1px solid #ddd;
+      .cart-total {
+        font-size: 20px;
+        color: black;
+      }
+      span {
+        padding: 20px;
+        position: relative;
+        top: 20px;
+      }
+      .pri {
+        margin-left: 100px;
+      }
+      .pric {
+        margin-left: 80px;
+      }
+      button {
+        position: relative;
+        top: 20px;
+        width: 90%;
+        margin: 0 auto;
+        left: 20px;
+        height: 60px;
+        font-size: 20px;
+        font-family: "EB Garamond", serif;
+        color: #5f4ecb;
+        border-radius: 4px;
+        border: 1px solid #5f4ecb;
+        transition: all 0.4s ease-in-out;
+        &:hover {
+          background-color: #5f4ecb;
+          color: white;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
