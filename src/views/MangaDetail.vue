@@ -42,10 +42,15 @@
   <div class="related">
     <h4>Related Manga</h4>
     <div class="relate">
-      <div
+      <router-link
         v-for="relate_manga in relate_mangas"
         :key="relate_manga.manga_id"
         class="relate-manga"
+        :to="
+          isMangasPage
+            ? `./${relate_manga.manga_id}`
+            : `/mangas/${relate_manga.manga_id}`
+        "
       >
         <div
           :style="{ backgroundImage: `url(${relate_manga.hinhanh})` }"
@@ -54,7 +59,7 @@
         <div class="relate-cate">{{ relate_manga.category }}</div>
         <div class="relate-name">{{ relate_manga.name }}</div>
         <div class="relate-price">$ {{ relate_manga.price }}.00</div>
-      </div>
+      </router-link>
     </div>
   </div>
   <Box></Box>
@@ -80,6 +85,8 @@ export default {
     const route = useRoute();
     const relate_mangas = ref({});
     const showAdd = ref(false);
+    const isMangasPage = route.path.startsWith("/mangas");
+
     const addToCart = () => {
       showAdd.value = true;
       const cartItem = {
@@ -154,6 +161,7 @@ export default {
       addToCart,
       showAdd,
       filterTag,
+      isMangasPage,
     };
   },
 };

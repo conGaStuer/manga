@@ -19,7 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $sql = "INSERT INTO user (username, password) VALUES ('$username', '$password')";
         if ($conn->query($sql) === TRUE) {
-
+            $_SESSION["username"] = $username;
+            echo $_SESSION["username"];
+            echo 1;
             $response = array('message' => 'Registration successful');
         } else {
             $response = array('message' => 'Error: ' . $sql . '<br>' . $conn->error);

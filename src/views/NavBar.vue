@@ -35,7 +35,13 @@
           <i class="fa-solid fa-x" @click="closeCart"></i>
         </div>
         <div class="product-list">
-          <div class="product" v-for="cartItem in cart" :key="cartItem.id">
+          <router-link
+            class="product"
+            v-for="cartItem in cart"
+            :key="cartItem.id"
+            :to="`/mangas/${cartItem.manga_id}`"
+            @click="reset"
+          >
             <div
               class="product-image"
               :style="{ backgroundImage: `url(${cartItem.hinhanh})` }"
@@ -50,11 +56,11 @@
               class="fa-regular fa-circle-xmark"
               @click="deleteCart(cartItem)"
             ></i>
-          </div>
+          </router-link>
         </div>
         <div class="product-prices">
           <span>Subtotal</span>
-          <h5>$ {{ totalPrice.toFixed(2) }}</h5>
+          <h5>$ {{ total }}.00</h5>
         </div>
         <div class="btn">
           <button><router-link to="/cart">View Cart</router-link></button>
@@ -68,22 +74,19 @@
 <script>
 import axios from "axios";
 import { ref, onMounted, computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
 export default {
   setup() {
     const cart = ref([]);
     const showCart = ref(false);
+
     const closeCart = () => {
       showCart.value = false;
     };
     const showSideCart = () => {
       showCart.value = true;
     };
-    const totalPrice = computed(() => {
-      return cart.value.reduce(
-        (total, item) => total + parseFloat(item.price),
-        0
-      );
-    });
+
     const deleteCart = (cartItem) => {
       axios
         .post("http://localhost/manga/manga/src/api/deleteCart.php", {
@@ -110,13 +113,34 @@ export default {
           console.log("Error", err);
         });
     });
+    const total = ref("");
+    const getTotal = () => {
+      axios
+        .get("http://localhost/manga/manga/src/api/total.php")
+        .then((res) => {
+          total.value = res.data;
+          console.log(cart.value);
+        })
+        .catch((err) => {
+          console.log("Error", err);
+        });
+    };
+    const reset = () => {
+      // window.Location.href = window.Location.href;
+      console.log(window.Location.href);
+    };
+    onMounted(() => {
+      getTotal();
+    });
     return {
       cart,
       showCart,
       showSideCart,
       closeCart,
-      totalPrice,
       deleteCart,
+      total,
+      getTotal,
+      reset,
     };
   },
 };

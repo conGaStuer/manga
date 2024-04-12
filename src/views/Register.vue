@@ -17,16 +17,14 @@ export default {
     const errorMessage = ref("");
     const register = () => {
       axios
-        .post(
-          "http://localhost/manga_online/manga_online/src/api/register.php",
-          {
-            username: username.value,
-            password: password.value,
-          }
-        )
+        .post("http://localhost/manga/manga/src/api/register.php", {
+          username: username.value,
+          password: password.value,
+        })
         .then((response) => {
           if (response.data.message === "Registration successful") {
-            window.location.href = "/";
+            // window.location.href = "/";
+            console.log("thanh cong");
           } else {
             errorMessage.value = "Username already exists";
           }

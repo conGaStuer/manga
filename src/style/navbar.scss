@@ -119,7 +119,7 @@ nav {
         padding: 0 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
-
+        text-decoration: none;
         .product-image {
           width: 80px;
           height: 80px;
@@ -132,7 +132,7 @@ nav {
           flex-direction: column;
           justify-content: center;
           gap: 5px;
-
+          color: #565a61;
           .product-name {
             color: #36363d;
             font-weight: bold;

@@ -11,11 +11,13 @@
 <script>
 import axios from "axios";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   setup() {
     const username = ref("");
     const password = ref("");
     const errorMessage = ref("");
+    const router = useRouter();
     const login = () => {
       axios
         .post("http://localhost/manga/manga/src/api/login.php", {
@@ -23,20 +25,18 @@ export default {
           password: password.value,
         })
         .then((response) => {
-          if (response.data.message === "Login successful") {
-            console.log("Login successful");
-            // Điều hướng đến trang chính hoặc thực hiện hành động tiếp theo tại đây
-          } else {
-            errorMessage.value = "Invalid username or password";
-          }
+          router.push({
+            name: "user",
+            query: { user: response.data.user_id },
+          });
+          console.log(response.data); // Sử dụng response.data thay vì user.value
         })
         .catch((error) => {
-          console.log("An error occurred", error);
+          console.error(error);
         });
     };
+
     return { username, password, login, errorMessage };
   },
 };
 </script>
-
-<style></style>

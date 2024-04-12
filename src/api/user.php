@@ -1,17 +1,27 @@
 <?php
 session_start();
+
 require ('./config.php');
-require ('./login.php');
 
-if (isset($_SESSION['username'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $data = json_decode(file_get_contents("php://input"));
+    if (isset($data->userId)) {
+        $userId = $data->userId;
+        $sql_user = "SELECT * FROM user WHERE user_id = '$userId'";
 
-    $response = array('username' => $_SESSION['username']);
-} else {
+        $result = $conn->query($sql_user);
 
-    $response = array('error' => 'User not logged in');
+        if ($result->num_rows > 0) {
+            $user = array();
+            while ($row = $result->fetch_assoc()) {
+                $user = $row;
+            }
+            echo json_encode($user);
+        }
+    }
 }
 
 
-header('Content-Type: application/json');
-echo json_encode($response);
+
+
 ?>
