@@ -10,14 +10,15 @@
 
 <script>
 import axios from "axios";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 export default {
   setup() {
     const username = ref("");
     const password = ref("");
     const errorMessage = ref("");
-    const router = useRouter();
+    const user = ref([]);
+
     const login = () => {
       axios
         .post("http://localhost/manga/manga/src/api/login.php", {
@@ -25,18 +26,15 @@ export default {
           password: password.value,
         })
         .then((response) => {
-          router.push({
-            name: "user",
-            query: { user: response.data.user_id },
-          });
-          console.log(response.data); // Sử dụng response.data thay vì user.value
+          user.value = response.data;
+          window.location.href = "/";
         })
         .catch((error) => {
           console.error(error);
         });
     };
 
-    return { username, password, login, errorMessage };
+    return { username, password, login, errorMessage, user };
   },
 };
 </script>

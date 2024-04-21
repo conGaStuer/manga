@@ -23,6 +23,7 @@
       </ul>
 
       <div>
+        <span class="username"> Hello, ! </span>
         <i class="fa-solid fa-basket-shopping" @click="showSideCart"></i>
       </div>
     </div>
@@ -64,7 +65,9 @@
         </div>
         <div class="btn">
           <button><router-link to="/cart">View Cart</router-link></button>
-          <button>Check out</button>
+          <button>
+            <router-link to="/order_detail">View Orders</router-link>
+          </button>
         </div>
       </div>
     </Transition>
@@ -75,7 +78,9 @@
 import axios from "axios";
 import { ref, onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import User from "./User.vue";
 export default {
+  components: { User },
   setup() {
     const cart = ref([]);
     const showCart = ref(false);
@@ -103,6 +108,20 @@ export default {
           console.log("Error", err);
         });
     };
+    const user = ref([]);
+    const getUser = () => {
+      axios
+        .get("http://localhost/manga/manga/src/api/user.php")
+        .then((res) => {
+          user.value = res.data;
+          console.log(user.value);
+        })
+        .catch((err) => {
+          console.log("Error", err);
+        });
+    };
+    // Lấy dữ liệu user từ route.params khi component được mount
+
     onMounted(() => {
       axios
         .get("http://localhost/manga/manga/src/api/cart.php")
@@ -112,6 +131,10 @@ export default {
         .catch((err) => {
           console.log("Error", err);
         });
+
+      getUser();
+
+      getTotal();
     });
     const total = ref("");
     const getTotal = () => {
@@ -129,9 +152,7 @@ export default {
       // window.Location.href = window.Location.href;
       console.log(window.Location.href);
     };
-    onMounted(() => {
-      getTotal();
-    });
+
     return {
       cart,
       showCart,
@@ -141,6 +162,7 @@ export default {
       total,
       getTotal,
       reset,
+      user,
     };
   },
 };

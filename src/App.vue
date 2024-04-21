@@ -1,7 +1,15 @@
 <template>
   <router-view />
+  <User></User>
 </template>
-
+<script>
+import User from "./views/User.vue";
+export default {
+  components: {
+    User,
+  },
+};
+</script>
 <style lang="scss">
 #app {
   font-family: "EB Garamond", serif;

@@ -60,7 +60,9 @@
         <span class="pri">$ {{ total }}.00</span>
       </tr>
       <tr>
-        <button>Proceed to checkout</button>
+        <router-link to="/order">
+          <button>Proceed to checkout</button></router-link
+        >
       </tr>
     </table>
   </div>
@@ -153,6 +155,7 @@ export default {
           console.log("Error", err);
         });
     };
+
     onMounted(() => {
       getCart();
       getTotal();
